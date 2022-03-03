@@ -1,11 +1,16 @@
 import { useState } from 'react'
+import Header from './components/Header'
 
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [presupuesto, setPresupuesto] = useState(0)
 
   return (
-    <h1>Control de Gastos</h1>
+    <div>
+      <Header
+        
+      />
+    </div>
   )
 }
 
