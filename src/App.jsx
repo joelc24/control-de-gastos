@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Header from './components/Header'
+import ListadoGastos from './components/ListadoGastos';
 import Modal from './components/Modal';
 import { generarId } from './helpers';
 import IconoNuevoGasto from './img/nuevo-gasto.svg'
@@ -24,7 +25,7 @@ function App() {
   const guardarGasto = gasto => {
     console.log("guardando gasto")
     gasto.id = generarId()
-    setGastos(...gastos, gasto)
+    setGastos([...gastos, gasto])
 
     setAnimarModal(false)
         
@@ -43,6 +44,12 @@ function App() {
         setIsValidPresupuesto={setIsValidPresupuesto}
       />
       {isValidPresupuesto && (
+        <>
+        <main>
+          <ListadoGastos
+            gastos={gastos}
+          />
+        </main>
       <div className="nuevo-gasto">
         <img 
           src={IconoNuevoGasto} 
@@ -50,6 +57,7 @@ function App() {
           onClick={handleNuevoGasto}
           />  
       </div>
+      </>
 
       )}
 
