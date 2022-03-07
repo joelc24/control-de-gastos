@@ -17,6 +17,7 @@ const NuevoPresupuesto = ({
         console.log('Enviando Formulario')
         if(!presupuesto || presupuesto < 0){
             setMensaje('No es Un presupuesto Valido')
+            setPresupuesto('')
             return;
         }
         setMensaje('')
