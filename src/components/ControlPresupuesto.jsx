@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
+import swal from 'sweetalert'
 
 const ControlPresupuesto = ({presupuesto, gastos, setGastos, setPresupuesto, setIsValidPresupuesto}) => {
 
@@ -33,13 +34,30 @@ const ControlPresupuesto = ({presupuesto, gastos, setGastos, setPresupuesto, set
     }
 
     const handleResetApp = () =>{
-        const resultado = confirm('¿Deseas Reiniciar Presupuesto y Gastos?')
+        
+        swal({
+            title: "Esta seguro?",
+            text: "¿Deseas Reiniciar Presupuesto y Gastos?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            
+            if (willDelete) {
+              swal("Presupuesto y Gastos Reiniciados!", {
+                icon: "success",
+              }).then(e => {
+                setGastos([])
+                setPresupuesto(0)
+                setIsValidPresupuesto(false)
+              })
+            } else {
+              swal("La Eliminacion Ha Sido Cancelada!");
+            }
+          })
 
-        if(resultado){
-            setGastos([])
-            setPresupuesto(0)
-            setIsValidPresupuesto(false)
-        }
+       
     }
 
     return ( 
